@@ -80,8 +80,8 @@ class Task extends React.Component {
         </div>
 
         <div>
-          {this.props.completed} 
-          <button />          
+          {this.props.completed}
+          <button onClick={() => console.log(this.props.id, "Status: ", this.props.completed)} />
         </div>
 
       </div>
