@@ -81,7 +81,7 @@ class Task extends React.Component {
 
         <div>
           {this.props.completed}
-          <button onClick={() => console.log(this.props.id, "Status: ", this.props.completed)} />
+          <button onClick= () => {console.log('объект:', this);}/>
         </div>
 
       </div>
