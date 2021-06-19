@@ -47,3 +47,28 @@
     border: 1px solid var(--border);
   }
 }
+
+.changeTask {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  * {
+    width: 300px;
+    margin-bottom: 10px;
+    color: var(--color);
+    background: var(--background);
+  }
+
+  input[type="checkbox"], span {
+    width: initial;
+  }
+
+  div {
+    display: flex;
+    justify-content: center;
+    * {
+      margin-bottom: 0;
+    }
+  }
+}

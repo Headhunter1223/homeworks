@@ -5,7 +5,9 @@ import {
   CHANGE_TASK_NAME,
   CHANGE_DESCRIPTION,
   CHANGE_COMPLETED,
-  CREATE_TASK
+  CREATE_TASK,
+  SAVE_PROJECTS,
+  SAVE_TASKS
 } from './types'
 
 const initialState = {
@@ -21,24 +23,12 @@ const initialState = {
       tasksIds: [1, 3]
     }
   },
-  tasksById: {
-    1: {
-      id: 1,
-      name: 'Task #1',
-      description: 'без описания',
+  actualTasks: {
+    0: {
+      id: 30,
+      name: 'первая задача',
+      description: 'описание',
       completed: false
-    },
-    2: {
-      id: 2,
-      name: 'Task #2',
-      description: 'с описанием',
-      completed: true
-    },
-    3: {
-      id: 3,
-      name: 'Task #3',
-      description: 'странные описания',
-      completed: true
     }
   },
   theme: true,
@@ -50,6 +40,10 @@ const initialState = {
 
 export const todoReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SAVE_PROJECTS:
+      return {...state, projectsById: action.payload}
+    case SAVE_TASKS:
+      return {...state, actualTasks: action.payload}
     case SWITCH_THEME:
       return {...state, theme: action.payload}
     case CHANGE_PROJECT_NAME:

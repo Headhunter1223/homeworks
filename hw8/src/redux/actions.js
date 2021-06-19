@@ -5,9 +5,19 @@ import {
   CHANGE_TASK_NAME,
   CHANGE_DESCRIPTION,
   CHANGE_COMPLETED,
-  CREATE_TASK
+  CREATE_TASK,
+  SAVE_PROJECTS,
+  SAVE_TASKS
 } from './types'
 import {store} from '../index'
+
+export const saveProjects = payload => {
+  return {type: SAVE_PROJECTS, payload}
+}
+
+export const saveTasks = payload => {
+  return {type: SAVE_TASKS, payload}
+}
 
 export const switchTheme = payload => {
   document.body.classList.toggle('dark')
@@ -20,20 +30,7 @@ export const changeProjectName = payload => ({
 })
 
 export const createProject = payload => {
-  const projectName = store.getState().todo.projectName
-    ? store.getState().todo.projectName
-    : 'Без названия'
-  const projectsById = {...store.getState().todo.projectsById}
-  const id = Math.random()
-  projectsById[id] = {
-    id,
-    name: projectName,
-    tasksIds: []
-  }
-  return {
-    type: CREATE_PROJECT,
-    payload: projectsById
-  }
+  return {type: CREATE_PROJECT, payload}
 }
 
 export const changeTaskName = payload => ({

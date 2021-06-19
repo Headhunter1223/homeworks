@@ -1,10 +1,30 @@
+import React from 'react'
 import ProjectsList from '../../components/ProjectsList/ProjectsList'
 import styles from './Home.module.scss'
 import {connect} from 'react-redux'
-import {changeProjectName, createProject} from '../../redux/actions'
+import {request} from '../../api/requests'
+import {
+  changeProjectName,
+  createProject,
+  saveProjects
+} from '../../redux/actions'
 
 const Home = props => {
-  console.log(props.state)
+  React.useEffect(() => {
+    request('api/projects/', 'GET')
+      .then(res => res.json())
+      .then(data => props.saveProjects({...data}))
+  }, [])
+
+  function createProject() {
+    request('api/projects/', 'POST', {name: props.state.todo.projectName}).then(
+      () => {
+        request('api/projects/', 'GET')
+          .then(res => res.json())
+          .then(data => props.saveProjects({...data}))
+      }
+    )
+  }
   return (
     <>
       <div className={styles.Home}>
@@ -17,9 +37,9 @@ const Home = props => {
           type="text"
           placeholder="Название проекта"
           onChange={e => props.changeProjectName(e.target.value)}
-          value={props.state.projectName}
+          value={props.state.todo.projectName}
         />
-        <button type="submit" onClick={props.createProject}>
+        <button type="submit" onClick={createProject}>
           Создать проект
         </button>
       </form>
@@ -31,7 +51,8 @@ const mapStateToProps = state => ({state})
 
 const mapDispatchToProps = {
   changeProjectName,
-  createProject
+  createProject,
+  saveProjects
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

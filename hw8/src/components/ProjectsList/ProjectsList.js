@@ -11,7 +11,7 @@ const ProjectsList = props => {
             className={styles.ProjectsList}
             key={projectKey}
             to={{
-              pathname: `/${el}`
+              pathname: `/${props.state.todo.projectsById[el].id}/${el}`
             }}
           >
             <span>
