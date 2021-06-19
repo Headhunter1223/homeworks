@@ -1,3 +1,6 @@
+# Домашние задания в соответствующих ветках - hw4, hw5, hw6 ... 
+# В 8 домашнем задании не были реализованы put запросы, бэк-енд отдает response 200, но изменения не принимает.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
